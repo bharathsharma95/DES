@@ -1,62 +1,36 @@
-""" import statements """
-from __future__ import with_statement
-import time
-import os
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Oct 26 18:08:31 2019
 
+@author: gorthy
+"""
 
-""" Function definitions """
-def encryption(data,key):
-    outData = []
-    #for rounds in range(8):
-    for i in range(len(data)):
+from time import ctime
+
+def DESencryption(data,key):
+    outData = data
+    for rounds in range(8):
+        for i in range(len(data)):
             if (i%2==0):
                 dataBytes = [data[i]] + [data[i+1]]
-                keyByte = key[0]
-                outData = outData + [iteration(dataBytes, keyByte)]
-    print(outData)
+                keyByte = key[rounds]
+                outData[i:i+2] = iteration(dataBytes, keyByte)
+        #print("outDataByts: "+ str(outData))
+    data = outData
     return outData
     
 def iteration(dataBytes,keyByte):
+    #Takes 2bytes of data and 1 byte of key
+    #does an iteration and outputs it as a list
+    #Eg: dataBytes = [data1, data2]
+    #    keyByte = [key1]
+    
     dataL = dataBytes[0]
     dataR = dataBytes[1]
     dataLdash = dataR
     dataRdash = dataL ^ keyByte
-    #print(dataLdash, dataRdash)
-    outData = dataLdash + dataRdash 
-    return outData    
-    
+    outData = [dataLdash] + [dataRdash]
+    return outData
 
-def openFile(file):
-    print(file + " opened in 'rb' mode")
-    with open(file, 'rb') as fid:
-      byte = fid.read(1)
-      fileInBytes = list(byte)
-      while byte:
-          byte = fid.read(1)
-          fileInBytes = fileInBytes + list(byte)
-    fid.close()
-    return fileInBytes
-
-if __name__ == "__main__":
-    
-    start_time = str(format(time.ctime()))
-    print("Script Started at: " + start_time)
-    print("")
-
-    fileSizeInBytes = os.path.getsize("key.txt")
-    print("keyFileSizeInBytes is: " + str(fileSizeInBytes))
-    
-    key = openFile("key.txt")
-    print("keyByt data: "+ str(key))
-    print("")
-
-    fileSizeInBytes = os.path.getsize("input.txt")
-    print("dataFileSizeInBytes is: " + str(fileSizeInBytes))
-    
-    inpDataByts = openFile("input.txt")
-    print("inpDataBin: "+ str(inpDataByts))
-    print("")
-    
-    cipher = []
-    cipher = encryption(inpDataByts, key)
-    
+if '__name__' == '__main__':
+    DESencryption()
