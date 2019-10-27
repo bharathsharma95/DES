@@ -3,45 +3,45 @@ A simple crypto system being implemented in python, to encrypt a file of any typ
 
 ## Contents
 
-###DES.py
-###readFile.py
-###encrypt.py
-###decrypt.py
-###wFile.py
-###input.txt
-###key.txt
-###README.md
-### Additional Comments
+DES.py
+readFile.py
+encrypt.py
+decrypt.py
+wFile.py
+input.txt
+key.txt
+README.md
+Additional Comments
 
-#### DES.py
+### DES.py
 
 This would be the root file that does it all
 
-#### readFile.py
+### readFile.py
 This script takes in a file as input and reads the file in itself
 as bytes and stores it in a list which is returned to the root file
 
-#### encrypt.py
+### encrypt.py
 As the name suggests, takes in two files, input.txt and key.txt
 performs the DES encryption on it, spits out a list of bytes
 
-#### decrypt.py (pending)
+### decrypt.py (pending)
 Coming Soon...
 
 
-#### wFile.py (pending)
+### wFile.py (pending)
 Should have the functionality of writing the encrypted and decrypted file
 translated from DES.py to wFile.py soon...
 
-#### input.txt
+### input.txt
 is just a file with random alphanumerics
 
-#### key.txt
+### key.txt
 again, is just a file with random alphanumerics
 
-#### README.md
+### README.md
 Is what you're looking at right now !?
 
-#### Additional Comments
+### Additional Comments
 
-###### contact @ bharadwaj.gorthy@gmail.com for any
+###### contact @ bharadwaj.gorthy@gmail.com for anys
