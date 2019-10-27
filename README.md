@@ -34,4 +34,4 @@ Is what you're looking at right now !?
 
 ### Additional Comments
 
-###### contact @ bharadwaj.gorthy@gmail.com for anys
+###### contact bharadwaj.gorthy@gmail.com for any
