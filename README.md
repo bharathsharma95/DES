@@ -3,16 +3,6 @@ A simple crypto system being implemented in python, to encrypt a file of any typ
 
 ## Contents
 
-DES.py
-readFile.py
-encrypt.py
-decrypt.py
-wFile.py
-input.txt
-key.txt
-README.md
-Additional Comments
-
 ### DES.py
 
 This would be the root file that does it all
