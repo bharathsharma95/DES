@@ -8,8 +8,9 @@ Created on Sat Oct 26 18:08:31 2019
 import time
 import readFile
 import encrypt
+import decrypt
+import os
 #import wFile
-#import os
 
 ''' 
 global variables here
@@ -21,16 +22,25 @@ global cipher
 """ Function definitions """
 
 def wFileBytToNorm(data):
-    if data == key:
+    if data == keyByts:
        f = open('keyBack.txt', 'w+b')
        keyByte = bytearray(data)
        f.write(keyByte)
        f.close()
-    else:
-        f = open('cipherBack.txt', 'w+b')
+    elif data == cipher:
+        f = open('cipher.txt', 'w+b')
         keyByte = bytearray(data)
         f.write(keyByte)
         f.close()
+    elif data == decypher:
+        f = open('decypher.txt', 'w+b')
+        keyByte = bytearray(data)
+        f.write(keyByte)
+        f.close()
+    else:
+        print("unknown identifier, debugging code needed")
+        print(str(time.ctime()))
+        print("Exiting ...")
 
 
 if __name__ == "__main__":
@@ -41,23 +51,25 @@ if __name__ == "__main__":
 
     #fileSizeInBytes = os.path.getsize("key.txt")
     #print("keyFileSizeInBytes is: " + str(fileSizeInBytes))
-    
-    
-    key = readFile.main("key.txt")
-    #print("keyByt data: "+ str(key))
-    #print("")
+      
+    keyByts = readFile.main("key.txt")
+    print("keyByt data: "+ str(keyByts))
+    print("")
 
-    #fileSizeInBytes = os.path.getsize("input.txt")
-    #print("dataFileSizeInBytes is: " + str(fileSizeInBytes))
+    fileSizeInBytes = os.path.getsize("input.txt")
+    print("dataFileSizeInBytes is: " + str(fileSizeInBytes))
     
     inpDataByts = readFile.main("input.txt")
     print("inpDataByts: "+ str(inpDataByts))
     print("")
     
-    cipher = []
-    cipher = encrypt.DESencryption(inpDataByts, key)
+    cipher = encrypt.DESencryption(inpDataByts, keyByts)
     print("cipher: "+ str(cipher))
     #print(len(cipher))
     
-    wFileBytToNorm(key)  #takes list and converts back to normal data
+    #wFileBytToNorm(key)  #takes list and converts back to normal data
     wFileBytToNorm(cipher)
+    
+    cipherByts = readFile.main("cipher.txt")
+    decypher = decrypt.DESdecryption(cipherByts, keyByts)
+    wFileBytToNorm(decypher)
