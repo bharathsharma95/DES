@@ -5,8 +5,6 @@ Created on Sat Oct 26 18:08:31 2019
 @author: gorthy
 """
 
-from time import ctime
-
 def DESencryption(data,key):
     outData = data
     for rounds in range(8):
@@ -32,5 +30,3 @@ def iteration(dataBytes,keyByte):
     outData = [dataLdash] + [dataRdash]
     return outData
 
-if '__name__' == '__main__':
-    DESencryption()
