@@ -1,22 +1,33 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Oct 26 18:08:31 2019
+Created on Fri Nov  1 16:36:44 2019
 
 @author: gorthy
 """
 
-def DESencryption(data,key):
-    outData = data
+def DESdecryption(dataByts, keyByts):
+    print("Decrypting file ...")
+    print("")
+    
+    print("keyByt data: " + str(keyByts))
+    print("")
+    
+    print("ciphDataByts: " + str(dataByts))
+    print("")
+    
+    outData = dataByts
     for rounds in range(8):
-        for i in range(len(data)):
+        for i in range(len(dataByts)):
             if (i%2==0):
-                dataBytes = [data[i]] + [data[i+1]]
-                keyByte = key[rounds]
+                dataBytes = [dataByts[i]] + [dataByts[i+1]]
+                keyByte = keyByts[7-rounds]
                 outData[i:i+2] = iteration(dataBytes, keyByte)
         #print("outDataByts: "+ str(outData))
-    data = outData
+    dataByts = outData
     return outData
     
+    
+
 def iteration(dataBytes,keyByte):
     #Takes 2bytes of data and 1 byte of key
     #does an iteration and outputs it as a list
@@ -25,8 +36,7 @@ def iteration(dataBytes,keyByte):
     
     dataL = dataBytes[0]
     dataR = dataBytes[1]
-    dataLdash = dataR
-    dataRdash = dataL ^ keyByte
+    dataLdash = dataR ^ keyByte
+    dataRdash = dataL
     outData = [dataLdash] + [dataRdash]
     return outData
-
